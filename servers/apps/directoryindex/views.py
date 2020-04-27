@@ -21,10 +21,15 @@ class FileList():
             self.flist[i] = self.fpath[i].replace("/home/support/python/note/django/servers/media/","/media/")
             self.mtime[i] = os.path.getmtime(self.fpath[i])
             self.mtime[i] = datetime.datetime.fromtimestamp(self.mtime[i])
+        self.fdict = {}
+        for f,m in self.flist, self.mtime:
+            self.fdict[f] = m
     def getflist(self):
         return self.flist
     def getmtime(self):
         return self.mtime
+    def getfdict(self):
+        return self.fdict
         
 def index(request):
     flist = FileList().getflist()
