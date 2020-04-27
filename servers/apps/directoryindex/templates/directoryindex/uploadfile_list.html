@@ -1,0 +1,17 @@
+{% if flist %}
+    <form action="{% url 'app:download_zip' %}" method="POST">
+        {% for filelist in flist %}
+            <p>
+                <input type="checkbox" name="zip" value="{{ filelist }}">
+                <a href={{ filelist }}>{{ filelist }}</a>
+                {# <a href={% url 'app:download' {{ filelist }}%}>{{ filelist }}</a> #}
+                aaaa
+            </p>
+        {% endfor %}
+        {% csrf_token %}
+        <button type="submit">ZIPダウンロード</button>
+    </form>
+{% else  %}
+    <p>No file list</p>
+{% endif %}
+

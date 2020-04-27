@@ -1,0 +1,9 @@
+
+<form action="{% url 'app:download_zip' %}" method="POST">
+      {% for uploadfile in uploadfile_list %}
+           <p><a href="{% url 'app:download' uploadfile.pk %}">{{ uploadfile }}</a>
+           <input type="checkbox" name="zip" value="{{ uploadfile.pk }}"></p>
+      {% endfor %}
+      {% csrf_token %}
+      <button type="submit">ZIPダウンロード</button>
+</form>
