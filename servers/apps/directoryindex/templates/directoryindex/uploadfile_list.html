@@ -1,12 +1,12 @@
-{% if flist %}
+{% if fdict %}
     <form action="{% url 'app:download_zip' %}" method="POST">
         {# {% for filelist in flist %} #}
-        {% for filelist,mtime in fdict %}
+        {% for filelist,mtime in fdict.items %}
             <p>
                 <input type="checkbox" name="zip" value="{{ filelist }}">
                 <a href={{ filelist }}>{{ filelist }}</a>
                 {# <a href={% url 'app:download' {{ filelist }}%}>{{ filelist }}</a> #}
-                <div>{{ mtime }}</div>
+                <spab>{{ mtime }}</span>
             </p>
         {% endfor %}
         {% csrf_token %}
