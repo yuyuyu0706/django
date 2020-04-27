@@ -1,12 +1,12 @@
 servers/apps/directoryindex/.urls.py.swp
 servers/apps/directoryindex/.views.py.swp
 servers/apps/directoryindex/__pycache__/
-servers/apps/directoryindex/migrations/
 servers/apps/directoryindex/views.py_org
 servers/apps/polls/__pycache__/
-servers/apps/polls/migrations/
 servers/media/
 servers/servers/__pycache__/
 servers/servers/settings.py_org
 servers/servers/urls.py_org
+servers/apps/directoryindex/migrations/__pycache__/
+servers/apps/polls/migrations/__pycache__/
 
