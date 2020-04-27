@@ -20,12 +20,11 @@ class FileList():
         for i in range(len(self.fpath)):
             self.flist[i] = self.fpath[i].replace("/home/support/python/note/django/servers/media/","/media/")
             self.mtime[i] = os.path.getmtime(self.fpath[i])
-            self.mtime[i] = datetime.datetime.fromtimestamp(self.mtime[i])
+            self.mtime[i] = datetime.datetime.fromtimestamp(self.mtime[i]).year
         self.fdict = {}
         for f,m in zip(self.flist, self.mtime):
             self.fdict[f] = m
     def getflist(self):
-        return self.flist
         return self.flist
     def getmtime(self):
         return self.mtime
@@ -36,7 +35,10 @@ def index(request):
     flist = FileList().getflist()
     mtime = FileList().getmtime()
     fdict = FileList().getfdict()
-    print(flist)
+    aaa = FileList()
+    print(type(aaa))
+    print(aaa.getflist())
+    print(aaa.mtime)
         
     template = loader.get_template('directoryindex/uploadfile_list.html')
     context = {'flist': flist, 'mtime': mtime,}
