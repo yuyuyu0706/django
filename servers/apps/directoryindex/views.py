@@ -13,18 +13,21 @@ from directoryindex.models import UploadFile
 
 class FileList():
     def __init__ (self):
-        #MEDIA_ROOT = "/media/*"
         MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
-        self.flist = glob.glob(MEDIA_ROOT)
+        self.fpath = glob.glob(MEDIA_ROOT)
+        self.flist = list(range(len(self.fpath)))
+        self.mtime = list(range(len(self.fpath)))
+        for i in range(len(self.fpath)):
+            self.flist[i] = self.fpath[i].replace("/home/support/python/note/django/servers/media/","/media/")
+            self.mtime[i] = self.fpath[i].replace("/home/support/python/note/django/servers/media/","/media/")
     def getflist(self):
         return self.flist
+    def getmtime(self):
+        return self.mtime
         
 def index(request):
     flist = FileList().getflist()
-    mtime = range(len(flist))
-    for i in range(len(flist)):
-        mtime[i] = os.path.getmtime(flist[i])
-        flist[i] = flist[i].replace("/home/support/python/note/django/servers/media/","/media/")
+    #mtime = list(range(len(flist)))
         
     template = loader.get_template('directoryindex/uploadfile_list.html')
     context = {'flist': flist}
