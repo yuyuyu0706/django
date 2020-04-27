@@ -21,7 +21,7 @@ class FileList():
         
 def index(request):
     flist = FileList().getflist()
-    mtime = FileList().getflist()
+    mtime = range(len(flist))
     for i in range(len(flist)):
         mtime[i] = os.path.getmtime(flist[i])
         flist[i] = flist[i].replace("/home/support/python/note/django/servers/media/","/media/")
