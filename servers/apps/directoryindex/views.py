@@ -24,19 +24,12 @@ class FileList():
             self.fsize[i] = os.path.getsize(self.fpath[i])
             self.mtime[i] = os.path.getmtime(self.fpath[i])
             self.mtime[i] = datetime.datetime.fromtimestamp(self.mtime[i]).strftime('%Y-%m-%d %H:%M:%S')
-        #self.fdict = {}
-        #self.fdict = defaultdict(str)
         self.fdict = defaultdict(list)
-        #for f,s in zip(self.flist, self.fsize):
         for f,s,m in zip(self.flist, self.fsize, self.mtime):
-            #self.fdict[f] = s
             self.fdict[f].append(s)
             self.fdict[f].append(m)
+        #self.fdict = sorted(self.fdict.items())
         self.fdict = dict(self.fdict)
-    def getflist(self):
-        return self.flist
-    def getmtime(self):
-        return self.mtime
     def getfdict(self):
         return self.fdict
         
@@ -47,7 +40,6 @@ def index(request):
     print(aaa.fdict)
         
     template = loader.get_template('directoryindex/uploadfile_list.html')
-    #context = {'flist': flist, 'mtime': mtime,}
     context = {'fdict': fdict}
     return HttpResponse(template.render(context, request))
 
