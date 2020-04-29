@@ -6,7 +6,8 @@
                 <input type="checkbox" name="zip" value="{{ filelist }}">
                 <a href={{ filelist }}>{{ filelist }}</a>
                 {# <a href={% url 'app:download' {{ filelist }}%}>{{ filelist }}</a> #}
-                <span>{{ value }}</span>
+                <span>{{ value.0 }}</span>
+                <span>{{ value.1 }}</span>
             </p>
         {% endfor %}
         {% csrf_token %}
