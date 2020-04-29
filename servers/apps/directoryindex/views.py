@@ -16,13 +16,15 @@ class FileList():
         MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
         self.fpath = glob.glob(MEDIA_ROOT)
         self.flist = list(range(len(self.fpath)))
+        self.fsize = list(range(len(self.fpath)))
         self.mtime = list(range(len(self.fpath)))
         for i in range(len(self.fpath)):
             self.flist[i] = self.fpath[i].replace("/home/support/python/note/django/servers/media/","/media/")
+            self.fsize[i] = os.path.getsize(self.fpath[i])
             self.mtime[i] = os.path.getmtime(self.fpath[i])
             self.mtime[i] = datetime.datetime.fromtimestamp(self.mtime[i]).strftime('%Y-%m-%d %H:%M:%S')
         self.fdict = {}
-        for f,m in zip(self.flist, self.mtime):
+        for f,m,s in zip(self.flist, self.mtime, self.fsize):
             self.fdict[f] = m
     def getflist(self):
         return self.flist
