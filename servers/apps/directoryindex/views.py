@@ -4,6 +4,7 @@ import glob
 import mimetypes
 import shutil
 import zipfile
+from collections import defaultdict
 from django.http import FileResponse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -23,9 +24,10 @@ class FileList():
             self.fsize[i] = os.path.getsize(self.fpath[i])
             self.mtime[i] = os.path.getmtime(self.fpath[i])
             self.mtime[i] = datetime.datetime.fromtimestamp(self.mtime[i]).strftime('%Y-%m-%d %H:%M:%S')
-        self.fdict = {}
-        for f,m,s in zip(self.flist, self.mtime, self.fsize):
-            self.fdict[f] = m
+        self.fdict = defaultdict(list)
+        for f,s,m in zip(self.flist, self.fsize, self.mtime):
+            self.fdict[f].append(s)
+            self.fdict[f].append(m)
     def getflist(self):
         return self.flist
     def getmtime(self):
@@ -34,13 +36,8 @@ class FileList():
         return self.fdict
         
 def index(request):
-    flist = FileList().getflist()
-    mtime = FileList().getmtime()
-    fdict = FileList().getfdict()
     aaa = FileList()
-    print(type(aaa))
-    print(aaa.getflist())
-    print(aaa.mtime)
+    fdict = FileList().getfdict()
     print(aaa.fdict)
         
     template = loader.get_template('directoryindex/uploadfile_list.html')
