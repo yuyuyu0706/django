@@ -1,0 +1,22 @@
+body{
+    margin:5px;
+}
+.header{
+    background:#fff;
+    background-color: rgba(255,255,255,0.7);
+    box-shadow: 0px 2px 8px rgba(30,30,80,0.3);
+    top: 0px;
+    left: 0px;
+    position:fixed; /*headerを固定化する*/
+    width:100%;     /*headerとするため100%を指定*/
+    z-index:24;     /*3次元軸浮かすために必要*/
+}
+.head_content{
+    padding: 0px 0px 0px 40px;
+}
+.header-padding{
+    padding: 40px 0px;
+}
+.content{
+    height: 300px;
+}

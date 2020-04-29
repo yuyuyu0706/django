@@ -2,18 +2,19 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"</link>
+        <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"</link>
     </head>
     <body>
         {% if fdict %}
         <form action="{% url 'app:download_zip' %}" method="POST">
-            <table border="1">
+            <table border="1" class="table">
                 <tr>
                     <th>FilePath</th>
                     <th>FileSize</th>
                     <th>TimeStamp</th>
                 </tr>
-                <tr>
-                    {% for filelist,value in fdict.items %}
+                {% for filelist,value in fdict.items %}
+                    <tr>
                         <td>
                             <input type="checkbox" name="zip" value="{{ filelist }}">
                             <a href={{ filelist }}>{{ filelist }}</a>
@@ -21,11 +22,11 @@
                         </td>
                         <td><span>{{ value.0 }}</span></td>
                         <td><span>{{ value.1 }}</span></td>
-                    {% endfor %}
-                    {% csrf_token %}
-                </tr>
+                    </tr>
+                {% endfor %}
+                {% csrf_token %}
             </table>
-            <div><button type="submit">ZIPダウンロード</button></div>
+            <button type="submit">ZIPダウンロード</button>
         </form>
         {% else  %}
             <p>No file list</p>
