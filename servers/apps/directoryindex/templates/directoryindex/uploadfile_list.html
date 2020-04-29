@@ -5,19 +5,28 @@
     </head>
     <body>
         {% if fdict %}
-            <form action="{% url 'app:download_zip' %}" method="POST">
-                {% for filelist,value in fdict.items %}
-                    <p>
-                        <input type="checkbox" name="zip" value="{{ filelist }}">
-                        <a href={{ filelist }}>{{ filelist }}</a>
-                        {# <a href={% url 'app:download' {{ filelist }}%}>{{ filelist }}</a> #}
-                        <span>{{ value.0 }}</span>
-                        <span>{{ value.1 }}</span>
-                    </p>
-                {% endfor %}
-                {% csrf_token %}
-                <button type="submit">ZIPダウンロード</button>
-            </form>
+        <form action="{% url 'app:download_zip' %}" method="POST">
+            <table border="1">
+                <tr>
+                    <th>FilePath</th>
+                    <th>FileSize</th>
+                    <th>TimeStamp</th>
+                </tr>
+                <tr>
+                    {% for filelist,value in fdict.items %}
+                        <td>
+                            <input type="checkbox" name="zip" value="{{ filelist }}">
+                            <a href={{ filelist }}>{{ filelist }}</a>
+                            {# <a href={% url 'app:download' {{ filelist }}%}>{{ filelist }}</a> #}
+                        </td>
+                        <td><span>{{ value.0 }}</span></td>
+                        <td><span>{{ value.1 }}</span></td>
+                    {% endfor %}
+                    {% csrf_token %}
+                </tr>
+            </table>
+            <div><button type="submit">ZIPダウンロード</button></div>
+        </form>
         {% else  %}
             <p>No file list</p>
         {% endif %}
