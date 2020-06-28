@@ -23,7 +23,6 @@ class FileList:
             MEDIA_ROOT = "/home/support/python/note/django/servers" + path + "/*"
         print(MEDIA_ROOT)
         self.fpath = glob.glob(MEDIA_ROOT)
-        print(self.fpath)
         self.flist = list(range(len(self.fpath)))
         self.fsize = list(range(len(self.fpath)))
         self.mtime = list(range(len(self.fpath)))
