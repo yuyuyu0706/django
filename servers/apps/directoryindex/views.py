@@ -20,7 +20,7 @@ class FileList:
     def setpath(self, path):
         if path == "/":
             MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
-        elif path == "*.*":
+        elif "." in path:
             MEDIA_ROOT = "/home/support/python/note/django/servers" + path
         else:
             MEDIA_ROOT = "/home/support/python/note/django/servers" + path + "/*"
