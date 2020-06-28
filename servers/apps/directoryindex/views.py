@@ -41,7 +41,6 @@ class FileList:
         return self.fdict
         
 def index(request):
-    print(request)
     path = request.path.replace('/directoryindex', '')
     aaa = FileList()
     aaa.setpath(path)
@@ -51,8 +50,16 @@ def index(request):
     context = {'fdict': fdict}
     return HttpResponse(template.render(context, request))
 
-
-def MyListView(ListView):
+def index_next(request, path):
+    print(request)
+    print(path)
+    path = request.path.replace('/directoryindex', '')
+    bbb = FileList()
+    bbb.setpath(path)
+    fdict = bbb.getfdict()
+    template = loader.get_template('directoryindex/uploadfile_list.html')
+    context = {'fdict': fdict}
+    return HttpResponse(template.render(context, request))
 
 def download(request, path):
     filepath = os.path.join(settings.MEDIA_ROOT, path)
