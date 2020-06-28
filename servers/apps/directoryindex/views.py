@@ -41,6 +41,7 @@ class FileList:
         
 def index(request):
     path = request.path.replace('/directoryindex', '')
+    print(path)
     aaa = FileList()
     aaa.setpath(path)
     fdict = aaa.getfdict()
