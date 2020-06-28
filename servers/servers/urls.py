@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include('apps.polls.urls')),
     path('directoryindex/', include('apps.directoryindex.urls')),
+    path('lists/', include('apps.lists.urls')),
     path('',RedirectView.as_view(url='/directoryindex/'), )
 ]
 
