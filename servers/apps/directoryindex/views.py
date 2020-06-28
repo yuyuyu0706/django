@@ -14,12 +14,15 @@ from directoryindex.models import UploadFile
 
 class FileList:
     def __init__ (self):
-        MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
-    
-    def setpath(path):
-        if path != "/":
+        print('init')
+
+    def setpath(self, path):
+        if path == "/":
+            MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
+        else:
             MEDIA_ROOT = "/home/support/python/note/django/servers/media/" + path + "*"
         self.fpath = glob.glob(MEDIA_ROOT)
+        print(self.fpath)
         self.flist = list(range(len(self.fpath)))
         self.fsize = list(range(len(self.fpath)))
         self.mtime = list(range(len(self.fpath)))
@@ -32,18 +35,15 @@ class FileList:
         for f,s,m in zip(self.flist, self.fsize, self.mtime):
             self.fdict[f].append(s)
             self.fdict[f].append(m)
-        #self.fdict = sorted(self.fdict.items())
         self.fdict = dict(self.fdict)
     def getfdict(self):
         return self.fdict
         
 def index(request):
-    print(type(request))
     path = request.path.replace('/directoryindex', '')
-    print(path)
     aaa = FileList()
-    FileList().setpath(path)
-    fdict = FileList().getfdict()
+    aaa.setpath(path)
+    fdict = aaa.getfdict()
     print(aaa.fdict)
         
     template = loader.get_template('directoryindex/uploadfile_list.html')
