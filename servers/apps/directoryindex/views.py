@@ -45,7 +45,6 @@ def index(request):
     aaa = FileList()
     aaa.setpath(path)
     fdict = aaa.getfdict()
-    print(aaa.fdict)
         
     template = loader.get_template('directoryindex/uploadfile_list.html')
     context = {'fdict': fdict}

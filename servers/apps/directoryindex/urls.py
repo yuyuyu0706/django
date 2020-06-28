@@ -7,14 +7,14 @@ urlpatterns = [
 ]
 '''
 
-from django.urls import path
+from django.urls import path,re_path
 from . import views
 
 app_name = 'app'
 
 urlpatterns = [
     path('', views.index, name='upload_list'),
-    path('media/<str>', views.index, name='upload_list'),
+    re_path('media(/[\w\-]+)+', views.index, name='upload_list'),
     #path('media/[\w\-]+', views.index, name='upload_list'),
     # path('', views.UploadList.as_view(), name='upload_list'),
     # path('download/[\w\-]+)+', views.download, name='download'),
