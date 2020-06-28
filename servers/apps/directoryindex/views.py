@@ -12,9 +12,13 @@ from django.views import generic
 from django.template import loader
 from directoryindex.models import UploadFile
 
-class FileList():
-    def __init__ (self):
-        MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
+class FileList(path):
+    def __init__ (self, path):
+        if path == '/':
+            MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
+        else:
+            MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
+            MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
         self.fpath = glob.glob(MEDIA_ROOT)
         self.flist = list(range(len(self.fpath)))
         self.fsize = list(range(len(self.fpath)))
@@ -34,10 +38,10 @@ class FileList():
         return self.fdict
         
 def index(request):
-    print(request)
+    print(type(request))
+    print(request.path.replace('/directoryindex', ''))
     aaa = FileList()
     fdict = FileList().getfdict()
-    print(type(aaa.fdict))
     print(aaa.fdict)
         
     template = loader.get_template('directoryindex/uploadfile_list.html')
