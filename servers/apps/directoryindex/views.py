@@ -9,6 +9,7 @@ from django.http import FileResponse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views import generic
+from django.views.generic import ListView
 from django.template import loader
 from directoryindex.models import UploadFile
 
@@ -40,8 +41,8 @@ class FileList:
         return self.fdict
         
 def index(request):
+    print(request)
     path = request.path.replace('/directoryindex', '')
-    print(path)
     aaa = FileList()
     aaa.setpath(path)
     fdict = aaa.getfdict()
@@ -49,6 +50,9 @@ def index(request):
     template = loader.get_template('directoryindex/uploadfile_list.html')
     context = {'fdict': fdict}
     return HttpResponse(template.render(context, request))
+
+
+def MyListView(ListView):
 
 def download(request, path):
     filepath = os.path.join(settings.MEDIA_ROOT, path)
