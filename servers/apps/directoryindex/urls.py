@@ -14,8 +14,10 @@ app_name = 'app'
 
 urlpatterns = [
     path('', views.index, name='upload_list'),
+    path('/media/testdir', views.index, name='upload_list'),
+    path('/media/[\w\-]+)+', views.index, name='upload_list'),
     # path('', views.UploadList.as_view(), name='upload_list'),
-    path('download/[\w\-]+)+', views.download, name='download'),
+    # path('download/[\w\-]+)+', views.download, name='download'),
     #path('download/<int:pk>/', views.download, name='download'),
     path('download/zip/', views.download_zip, name='download_zip')
 ]
