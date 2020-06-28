@@ -20,6 +20,8 @@ class FileList:
     def setpath(self, path):
         if path == "/":
             MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
+        elif path == "*.*":
+            MEDIA_ROOT = "/home/support/python/note/django/servers" + path
         else:
             MEDIA_ROOT = "/home/support/python/note/django/servers" + path + "/*"
         print(MEDIA_ROOT)
@@ -52,8 +54,8 @@ def index(request):
 
 def index_next(request, path):
     print(request)
-    print(path)
     path = request.path.replace('/directoryindex', '')
+    print(path)
     bbb = FileList()
     bbb.setpath(path)
     fdict = bbb.getfdict()
