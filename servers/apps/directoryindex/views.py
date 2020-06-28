@@ -34,6 +34,7 @@ class FileList():
         return self.fdict
         
 def index(request):
+    print(request)
     aaa = FileList()
     fdict = FileList().getfdict()
     print(type(aaa.fdict))
