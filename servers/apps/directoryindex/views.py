@@ -20,7 +20,8 @@ class FileList:
         if path == "/":
             MEDIA_ROOT = "/home/support/python/note/django/servers/media/*"
         else:
-            MEDIA_ROOT = "/home/support/python/note/django/servers/media/" + path + "*"
+            MEDIA_ROOT = "/home/support/python/note/django/servers" + path + "/*"
+        print(MEDIA_ROOT)
         self.fpath = glob.glob(MEDIA_ROOT)
         print(self.fpath)
         self.flist = list(range(len(self.fpath)))
